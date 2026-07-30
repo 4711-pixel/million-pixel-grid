@@ -1,7 +1,3 @@
-// AGB-Inhalt.
-// WICHTIG: Ersetze alle [PLATZHALTER] durch deine echten Daten.
-// Diese Datei ersetzt keine Rechtsberatung.
-
 export const agbMd = `
 # Allgemeine Geschäftsbedingungen (AGB)
 
@@ -9,7 +5,7 @@ export const agbMd = `
 
 Diese Allgemeinen Geschäftsbedingungen gelten für alle Käufe von Pixeln
 auf dieser Website (nachfolgend "Plattform"), betrieben von
-[VOLLSTÄNDIGER NAME] (nachfolgend "Anbieter").
+Stephan Petzoldt (nachfolgend "Anbieter").
 
 ## § 2 Vertragsgegenstand
 
