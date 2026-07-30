@@ -9,11 +9,16 @@ CREATE TABLE IF NOT EXISTS pixels (
   status TEXT NOT NULL DEFAULT 'reserved', -- 'reserved' | 'sold'
   payment_intent_id TEXT,               -- Stripe PaymentIntent-ID
   reserved_until TIMESTAMPTZ,           -- NULL sobald 'sold'
-  withdrawal_waiver_accepted_at TIMESTAMPTZ, -- Zeitpunkt der Zustimmung zum Widerrufsverzicht (§ 356 Abs. 5 BGB)
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   PRIMARY KEY (x, y)
 );
+
+-- Spalten, die nach dem ersten Deploy hinzugekommen sind, werden hier
+-- gezielt nachgerüstet. CREATE TABLE IF NOT EXISTS ändert eine bereits
+-- bestehende Tabelle NICHT ab – deshalb reicht die Spalte oben in der
+-- Tabellendefinition allein nicht, wenn die Tabelle schon existiert.
+ALTER TABLE pixels ADD COLUMN IF NOT EXISTS withdrawal_waiver_accepted_at TIMESTAMPTZ;
 
 CREATE INDEX IF NOT EXISTS idx_pixels_status ON pixels (status);
 CREATE INDEX IF NOT EXISTS idx_pixels_reserved_until ON pixels (reserved_until)
